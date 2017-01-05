@@ -1,0 +1,26 @@
+{
+  "name": "angela",
+  "version": "1.0.0",
+  "description": "Angular online store for learning purposes ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/andela-cnwosu/angela.git"
+  },
+  "keywords": [
+    "angular",
+    "learning"
+  ],
+  "author": "Chineze Nwosu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andela-cnwosu/angela/issues"
+  },
+  "homepage": "https://github.com/andela-cnwosu/angela#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
