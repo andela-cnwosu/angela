@@ -1,4 +1,6 @@
 var express  = require('express');
+var dotenv = require('dotenv');
+dotenv.load();
 var app = express();
 var port = process.env.PORT || 8080;
 

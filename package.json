@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/andela-cnwosu/angela#readme",
   "dependencies": {
+    "dotenv": "^2.0.0",
     "express": "^4.14.0"
   }
 }
