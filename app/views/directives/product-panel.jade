@@ -1,0 +1,46 @@
+section
+  ul.nav.nav-pills
+    li(ng-class='{ active:panel.isSelected(1) }')
+      a(ng-click='panel.selectTab(1)') Description
+    li(ng-class='{ active:panel.isSelected(2) }')
+      a(ng-click='panel.selectTab(2)') Specification
+    li(ng-class='{ active:panel.isSelected(3) }')
+      a(ng-click='panel.selectTab(3)') Reviews
+  
+  .panel(ng-show='panel.isSelected(1)')
+    h4 Description
+    blockquote {{product.description}}
+  
+  .panel(ng-show='panel.isSelected(2)')
+    h4 Specification
+    blockquote Not yet
+
+  .panel(ng-show='panel.isSelected(3)')
+    ul
+      h4 Reviews
+      li(ng-repeat='review in product.reviews')
+        blockquote
+          strong {{ review.stars }} Stars
+          p {{ review.body }}
+          cite.clearfix — {{ review.author }}
+
+    form(name='reviewForm', ng-controller='ReviewController as reviewCtrl', ng-submit='reviewForm.$valid && reviewCtrl.addReview(product)', novalidate)
+      blockquote
+        strong {{ reviewCtrl.review.stars }} Stars
+        p {{ reviewCtrl.review.body }}
+        cite.clearfix — {{ reviewCtrl.review.author }}
+
+      <!--  Review Form -->
+      h4 Submit a Review
+      fieldset.form-group
+        select.form-control(ng-model='reviewCtrl.review.stars', ng-options='stars for stars in [5,4,3,2,1]', title='Stars', required)
+          option(value='') Rate this Product
+
+      fieldset.form-group
+        textarea.form-control(ng-model='reviewCtrl.review.body', placeholder='Write a short review of the product...', title='Review', required)
+
+      fieldset.form-group
+        input.form-control(type='email', ng-model='reviewCtrl.review.author', placeholder='jimmyDean@example.org', title='Email', required)
+
+      fieldset.form-group
+        input.btn.btn-primary.pull-right(type='submit', value='Submit Review')

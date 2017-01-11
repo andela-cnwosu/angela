@@ -1,0 +1,26 @@
+doctype html
+html(ng-app = 'store')
+  head
+    link(rel='stylesheet', type='text/css', href='css/application.css')
+    link(rel='stylesheet', type='text/css', href='vendor/bootstrap/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js')
+  body(ng-controller='StoreController as store')
+    .container
+      .row(ng-repeat='product in store.products')
+        .col-md-offset-3.col-md-6
+          div(ng-hide='product.soldOut')
+            .col-md-6
+              product-title
+              button.btn.btn-primary(ng-show='product.canPurchase') Add to Cart
+            .col-md-6
+              img.img-circle(ng-src='{{product.image}}')
+            br
+            .col-md-12
+              p Change name of product:
+                input.form-control(type='text', ng-model='product.name')
+              product-panel
+            hr
+        br
+        br
+  script(src='js/application.js')
+  script(src='vendor/bootstrap/bootstrap.min.js')

@@ -1,0 +1,48 @@
+
+<section>
+  <ul class="nav nav-pills">
+    <li ng-class="{ active:panel.isSelected(1) }"><a ng-click="panel.selectTab(1)">Description</a></li>
+    <li ng-class="{ active:panel.isSelected(2) }"><a ng-click="panel.selectTab(2)">Specification</a></li>
+    <li ng-class="{ active:panel.isSelected(3) }"><a ng-click="panel.selectTab(3)">Reviews</a></li>
+  </ul>
+  <div ng-show="panel.isSelected(1)" class="panel">
+    <h4>Description</h4>
+    <blockquote>{{product.description}}</blockquote>
+  </div>
+  <div ng-show="panel.isSelected(2)" class="panel">
+    <h4>Specification</h4>
+    <blockquote>Not yet</blockquote>
+  </div>
+  <div ng-show="panel.isSelected(3)" class="panel">
+    <ul>
+      <h4>Reviews</h4>
+      <li ng-repeat="review in product.reviews">
+        <blockquote><strong>{{ review.stars }} Stars</strong>
+          <p>{{ review.body }}</p>
+          <cite class="clearfix">— {{ review.author }}</cite>
+        </blockquote>
+      </li>
+    </ul>
+    <form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid &amp;&amp; reviewCtrl.addReview(product)" novalidate="novalidate">
+      <blockquote><strong>{{ reviewCtrl.review.stars }} Stars</strong>
+        <p>{{ reviewCtrl.review.body }}</p>
+        <cite class="clearfix">— {{ reviewCtrl.review.author }}</cite>
+      </blockquote><!--  Review Form -->
+      <h4>Submit a Review</h4>
+      <fieldset class="form-group">
+        <select ng-model="reviewCtrl.review.stars" ng-options="stars for stars in [5,4,3,2,1]" title="Stars" required="required" class="form-control">
+          <option value="">Rate this Product</option>
+        </select>
+      </fieldset>
+      <fieldset class="form-group">
+        <textarea ng-model="reviewCtrl.review.body" placeholder="Write a short review of the product..." title="Review" required="required" class="form-control"></textarea>
+      </fieldset>
+      <fieldset class="form-group">
+        <input type="email" ng-model="reviewCtrl.review.author" placeholder="jimmyDean@example.org" title="Email" required="required" class="form-control"/>
+      </fieldset>
+      <fieldset class="form-group">
+        <input type="submit" value="Submit Review" class="btn btn-primary pull-right"/>
+      </fieldset>
+    </form>
+  </div>
+</section>
